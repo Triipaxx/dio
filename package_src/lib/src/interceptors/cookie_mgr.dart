@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 import '../interceptor.dart';
 import '../options.dart';
 import '../response.dart';

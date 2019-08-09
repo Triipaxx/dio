@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 
 class DioHttpHeaders implements HttpHeaders {
   final Map<String, List<String>> _headers;
@@ -28,12 +28,12 @@ class DioHttpHeaders implements HttpHeaders {
   }
 
   DioHttpHeaders.fromMap(
-      Map<String, dynamic> map, {
-        int defaultPortForScheme = HttpClient.defaultHttpPort,
-        this.protocolVersion = "1.0",
-      }) : _headers = Map<String, List<String>>() {
+    Map<String, dynamic> map, {
+    int defaultPortForScheme = HttpClient.defaultHttpPort,
+    this.protocolVersion = "1.0",
+  }) : _headers = Map<String, List<String>>() {
     map.forEach((name, value) =>
-    _headers[name] = value is List<String> ? value : [value.toString()]);
+        _headers[name] = value is List<String> ? value : [value.toString()]);
     if (protocolVersion == "1.0") {
       _persistentConnection = false;
       _chunkedTransferEncoding = false;
@@ -116,7 +116,7 @@ class DioHttpHeaders implements HttpHeaders {
         if (_contentLength == -1) {
           throw new HttpException(
               "Trying to set 'Connection: Keep-Alive' on HTTP 1.0 headers with "
-                  "no ContentLength");
+              "no ContentLength");
         }
         add(HttpHeaders.connectionHeader, "keep-alive");
       }
@@ -218,7 +218,7 @@ class DioHttpHeaders implements HttpHeaders {
     if (values != null) {
       try {
         return HttpDate.parse(values[0]);
-      }  catch (e) {
+      } catch (e) {
         return null;
       }
     }
@@ -371,7 +371,7 @@ class DioHttpHeaders implements HttpHeaders {
         } else {
           try {
             port = int.parse(value.substring(pos + 1));
-          } on FormatException{
+          } on FormatException {
             port = null;
           }
         }

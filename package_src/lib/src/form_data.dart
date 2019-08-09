@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 import 'dart:math';
 import 'upload_file_info.dart';
 
@@ -86,7 +86,6 @@ class FormData extends MapMixin<String, dynamic> {
     return _fileFieldLen;
   }
 
-
   /// Get the length of the formData (as bytes)
   int get length {
     var len = 0;
@@ -102,7 +101,7 @@ class FormData extends MapMixin<String, dynamic> {
     writeMapLength(buf, key, value) {
       value.keys.toList().forEach((mapKey) {
         var nestedKey = '${key}[${mapKey}]';
-        if (value[mapKey]==null) return;
+        if (value[mapKey] == null) return;
         if (value[mapKey] is Map) {
           writeMapLength(buf, nestedKey, value[mapKey]);
         } else if (value[mapKey] is UploadFileInfo) {
@@ -225,10 +224,10 @@ class FormData extends MapMixin<String, dynamic> {
             bytes.addAll(_chunkHeader(data, key, e));
             bytes.addAll(e.bytes ?? e.file.readAsBytesSync());
             bytes.addAll(utf8.encode('\r\n'));
-          } else if(e is Map){
+          } else if (e is Map) {
             handleMapField(bytes, key, e);
           } else {
-            bytes.addAll(_textField(data, key+"[]", e));
+            bytes.addAll(_textField(data, key + "[]", e));
           }
         });
       }
@@ -326,7 +325,7 @@ class FormData extends MapMixin<String, dynamic> {
     }
 
     for (var entry in _map.entries) {
-      if(entry.value==null) continue;
+      if (entry.value == null) continue;
       if (entry.value is UploadFileInfo || entry.value is List) {
         // If file, add it to `fileMap`, we handle it later.
         fileMap[entry.key] = entry.value;
@@ -341,14 +340,14 @@ class FormData extends MapMixin<String, dynamic> {
     }
 
     for (var entry in fileMap.entries) {
-      if(entry.value==null) continue;
+      if (entry.value == null) continue;
       if (entry.value is UploadFileInfo) {
         await for (var chunk in addFile(entry.key, entry.value)) {
           yield chunk;
         }
       } else {
         for (var info in entry.value) {
-          if(info==null) continue;
+          if (info == null) continue;
           if (info is UploadFileInfo) {
             await for (var chunk in addFile(entry.key, info)) {
               yield chunk;

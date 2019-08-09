@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 import 'dio.dart';
 import 'cancel_token.dart';
 import 'transformer.dart';
@@ -52,7 +52,7 @@ class BaseOptions extends _RequestConfig {
     bool receiveDataWhenStatusError = true,
     bool followRedirects = true,
     int maxRedirects = 5,
-   RequestEncoder requestEncoder,
+    RequestEncoder requestEncoder,
     ResponseDecoder responseDecoder,
   }) : super(
           method: method,
@@ -67,7 +67,7 @@ class BaseOptions extends _RequestConfig {
           followRedirects: followRedirects,
           cookies: cookies,
           maxRedirects: maxRedirects,
-          requestEncoder:requestEncoder,
+          requestEncoder: requestEncoder,
           responseDecoder: responseDecoder,
         );
 
@@ -88,7 +88,7 @@ class BaseOptions extends _RequestConfig {
     bool receiveDataWhenStatusError,
     bool followRedirects,
     int maxRedirects,
-    RequestEncoder  requestEncoder,
+    RequestEncoder requestEncoder,
     ResponseDecoder responseDecoder,
   }) {
     return new BaseOptions(
@@ -134,7 +134,7 @@ class Options extends _RequestConfig {
     bool receiveDataWhenStatusError,
     bool followRedirects,
     int maxRedirects,
-    RequestEncoder  requestEncoder,
+    RequestEncoder requestEncoder,
     ResponseDecoder responseDecoder,
   }) : super(
           method: method,
@@ -150,7 +150,7 @@ class Options extends _RequestConfig {
           followRedirects: followRedirects,
           cookies: cookies,
           maxRedirects: maxRedirects,
-          requestEncoder:requestEncoder,
+          requestEncoder: requestEncoder,
           responseDecoder: responseDecoder,
         );
 
@@ -169,7 +169,7 @@ class Options extends _RequestConfig {
     bool receiveDataWhenStatusError,
     bool followRedirects,
     int maxRedirects,
-    RequestEncoder  requestEncoder,
+    RequestEncoder requestEncoder,
     ResponseDecoder responseDecoder,
   }) {
     return new Options(

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 import 'dart:async';
 import 'dart:typed_data';
 import 'options.dart';
@@ -150,7 +150,7 @@ class DefaultHttpClientAdapter extends HttpClientAdapter {
     if (options.receiveTimeout > 0) {
       future = future.timeout(Duration(milliseconds: options.receiveTimeout));
     }
-    HttpClientResponse  responseStream;
+    HttpClientResponse responseStream;
     try {
       responseStream = await future;
     } on TimeoutException {
@@ -162,9 +162,10 @@ class DefaultHttpClientAdapter extends HttpClientAdapter {
     }
 
     // https://github.com/dart-lang/co19/issues/383
-    Stream<Uint8List> stream= responseStream.transform(StreamTransformer.fromHandlers(
+    Stream<Uint8List> stream =
+        responseStream.transform(StreamTransformer.fromHandlers(
       handleData: (data, sink) {
-          sink.add(Uint8List.fromList(data));
+        sink.add(Uint8List.fromList(data));
       },
     ));
 

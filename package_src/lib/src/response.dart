@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 import 'options.dart';
 
 /// Response describes the http Response info.
@@ -9,7 +9,7 @@ class Response<T> {
     this.headers,
     this.request,
     this.redirects,
-    this.statusCode ,
+    this.statusCode,
     this.statusMessage,
     this.extra,
   });

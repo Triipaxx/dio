@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 
 /// Describes the info of file to upload.
 class UploadFileInfo {
