@@ -6,7 +6,7 @@ main() async {
   var dio = new Dio();
   //dio.options.connectTimeout = 2000;
   // More about HttpClient proxy topic please refer to Dart SDK doc.
-  dio.interceptors.add(CookieManager(PersistCookieJar()));
+  // dio.interceptors.add(CookieManager(PersistCookieJar()));
   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
       (HttpClient client) {
     client.findProxy = (uri) {

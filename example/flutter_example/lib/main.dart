@@ -18,7 +18,8 @@ parseJson(String text) {
 
 void main() {
   // add interceptors
-  dio.interceptors..add(CookieManager(CookieJar()))..add(LogInterceptor());
+  dio.interceptors
+    .. /*add(CookieManager(CookieJar()))..*/ add(LogInterceptor());
   (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
   dio.options.receiveTimeout = 15000;
 //  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
@@ -75,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //                });
 //              });
 
-              dio.post("http://10.1.10.250:3000",data:{"a":1}).then((r) {
+              dio.post("http://10.1.10.250:3000", data: {"a": 1}).then((r) {
                 setState(() {
                   _text = r.data.replaceAll(RegExp(r"\s"), "");
                 });

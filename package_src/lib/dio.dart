@@ -15,6 +15,6 @@ export 'src/response.dart';
 export 'src/cancel_token.dart';
 export 'src/upload_file_info.dart';
 export 'src/interceptors/log.dart';
-export 'src/interceptors/cookie_mgr.dart';
+// export 'src/interceptors/cookie_mgr.dart';
 export 'src/adapter.dart';
 export 'src/dio_http_headers.dart';
