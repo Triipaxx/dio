@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 import 'package:dio/dio.dart';
 
 class MockAdapter extends HttpClientAdapter {

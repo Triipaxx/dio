@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'mock_adapter.dart';
@@ -111,7 +111,7 @@ void main() {
         "name": "wendux",
         "age": 25,
         "other": {"a": 1, "b": 2},
-        "test":["xx",2]
+        "test": ["xx", 2]
       });
 
       formData.remove("name");
